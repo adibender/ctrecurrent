@@ -1,0 +1,128 @@
+---
+title: "Camera trap data to recurrent events data"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ctrecurrent}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+library(knitr)
+opts_chunk$set(
+  fig.align = "center",
+  crop      = TRUE)
+```
+
+The goal of **`ctrecurrent`** is to transform the camera trap data into a format
+suitable for recurrent event analysis.
+It contains the function recurrent() to do so, requiring a data frame with the
+following information for each observation:
+
+- Site ID,
+- Timestamp (Date and Time) and
+- Species
+
+```{r eval = FALSE}
+ library(dplyr)
+ library(pammtools)
+ library(ggplot2)
+ library(reReg)
+
+ ####
+ # Data Formating
+ ####
+
+ # See data's vignette for details
+ head(murphy)
+
+ # Define the pool of primary species (affecting secondary species, censoring the survey if observed, being the focus of the model)
+ primary = c("Deer")
+
+ # Define the secondary species (affected by the primary species, only one)
+ secondary = c("Coyote")
+
+ # Define the tertiary species (affecting the secondary species, censoring the survey if observed but not being the focus of the model)
+ tertiary = c("Fawn", "Bear", "Bobcat", "Human", "Motorized")
+
+ # Define the end of study
+ end_date = max(murphy$DateTime)
+
+ # Convert into recurrent event
+ recu = recurrent(murphy, primary, secondary, tertiary, end_survey = end_date, survey_duration = 30)
+
+ # Merge covariate information with recurrent events data table
+ cov = murphy %>% select(Site, matrix) %>% distinct()
+ data = left_join(recu, cov)
+
+ # Events plot
+ reReg::plotEvents(Recur(t.start %to% t.stop, SurveyId, event, status) ~ 1, data = data, xlab = "Time in days", ylab = "Subjects arranged by terminal time")
+ # By levels of matrix landscape
+ reReg::plotEvents(Recur(t.start %to% t.stop, SurveyId, event, status) ~ matrix, data = data, xlab = "Time in days", ylab = "Subjects arranged by terminal time")
+
+ # PED transformation
+ ped = data %>%
+     as_ped(formula = Surv(t.start, t.stop, event)~ matrix,
+            id = "SurveyId",
+            transition = "enum",
+            timescale = "calendar")
+
+ ####
+ # PAMM
+ ####
+
+ # Null model
+ m_null = pamm(formula = ped_status ~
+     s(tend) +
+     s(Id, bs = "re"),
+     data = ped,
+     offset = offset,  engine = "bam", method = "fREML",  discrete = TRUE)
+ summary(m_null)
+
+ # Linear covariate effect
+ m_linear = pamm(formula = ped_status ~
+     matrix +
+     s(tend) +
+     s(Id, bs = "re"),
+     data = ped,
+     offset = offset,  engine = "bam", method = "fREML",  discrete = TRUE)
+ summary(m_linear)
+
+ # Time-varying covariate effect
+ m_tv = pamm(formula = ped_status ~
+     matrix +
+     s(tend, bs = "cr") +
+     s(tend, by = as.ordered(matrix), bs = "cr") +
+     s(Id, bs = "re"),
+     data = ped,
+     offset = offset,  engine = "bam", method = "fREML",  discrete = TRUE)
+ summary(m_tv)
+
+ #####
+ # Prediction plots
+ #####
+
+ # Null model
+ ndf_null <- ped %>%
+    make_newdata(tend = unique(tend)) %>%
+    add_hazard(m_null, exclude = c("s(id)"))
+ p_null = ggplot(ndf_null, aes(x = tend, y = hazard)) +
+   geom_line() +
+   geom_ribbon(aes(ymin = ci_lower, ymax = ci_upper), alpha = .3) +
+   xlab("Time after white-tailed deer (day)") +
+   ylab(~paste("Coyote event number.Day"^-1,".Camera-Trap"^-1))
+ print(p_null)
+
+ # Time-varying covariate effect
+ ndf_tv <- ped %>%
+    make_newdata(tend = unique(tend), matrix = unique(matrix)) %>%
+    add_hazard(m_tv, exclude = c("s(id)"))
+ p_tv = ggplot(ndf_tv, aes(x = tend, y = hazard, colour = matrix)) +
+   geom_line() +
+   geom_ribbon(aes(ymin = ci_lower, ymax = ci_upper), alpha = .3) +
+   scale_color_manual(values = c("#999999", "#E69F00"))  +
+   xlab("Time after white-tailed deer (day)") +
+   ylab(~paste("Coyote event number.Day"^-1,".Camera-Trap"^-1))
+ print(p_tv)
+```

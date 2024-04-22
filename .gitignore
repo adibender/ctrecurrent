@@ -1,0 +1,36 @@
+# ignored folders
+inst/doc
+sandbox/
+# RStudio
+.Rproj.user
+pam.Rproj
+.Rhistory
+*.Rhistory
+# vignette by-products
+*cache/
+docs/articles/aalen*
+docs/articles/model-eval*
+vignettes/*.html
+vignettes/*_files
+## dropbox
+*.dropbox.attr
+docs/*
+pkgdown/
+*.Rproj
+revdep
+/vignettes/baseline.pdf
+/vignettes/basics.pdf
+/vignettes/competing-risks.pdf
+/vignettes/convenience.pdf
+/vignettes/cumulative-effects.pdf
+/vignettes/data-transformation.pdf
+/vignettes/figure/
+/vignettes/frailty.pdf
+/vignettes/left-truncation.pdf
+/vignettes/model-evaluation.pdf
+/vignettes/recurrent-events.pdf
+/vignettes/splines.pdf
+/vignettes/strata.pdf
+/vignettes/tdcovar.pdf
+/vignettes/tveffects.pdf
+/data-raw/staph.xlsx

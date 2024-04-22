@@ -1,0 +1,30 @@
+url: https://adibender.github.io/ctrecurent
+reference:
+  - title: "Transform camera trap data to recurrent events data"
+    desc: "Functionality to transform camera trap data to recurrent events data that can be analyzed with survival analysis techniques"
+    contents:
+      - ct_to_recurrent
+
+articles:
+  - title: "Articles"
+    desc: "Example analysis"
+    contents:
+    - example-analysis
+
+navbar:
+  type: default
+  left:
+  - text: Reference
+    href: reference/index.html
+  - text: Articles
+    menu:
+    - text: Example analysis
+      href: articles/example-analysis.html
+  right:
+  - icon: fa-github fa-lg
+    href: https://github.com/adibender/ctrecurent
+
+development:
+  mode: auto
+  version_label: default
+  version_tooltip: "Version"

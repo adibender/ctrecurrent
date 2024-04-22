@@ -1,0 +1,25 @@
+^paper$
+^CRAN-RELEASE$
+^.*\.Rproj$
+^\.Rproj\.user$
+
+## travis
+^\.travis\.yml$
+^appveyor\.yml$
+^.*\.dropbox\.attr$
+^.*\.nfs$
+^data-raw$
+^LICENCE\.md$
+^docs$
+^LICENSE\.md$
+^_pkgdown\.yml$
+^vignettes$
+^README\.Rmd$
+^sanbox/$
+^codecov\.yml$
+^sandbox$
+^cran-comments\.md$
+^pkgdown$
+^revdep$
+^\.github$
+^CRAN-SUBMISSION$
