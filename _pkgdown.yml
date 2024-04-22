@@ -4,6 +4,7 @@ reference:
     desc: "Functionality to transform camera trap data to recurrent events data that can be analyzed with survival analysis techniques"
     contents:
       - ct_to_recurrent
+      - murphy
 
 articles:
   - title: "Articles"
