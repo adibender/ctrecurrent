@@ -25,7 +25,9 @@ Suggests:
 Config/Needs/website:
   knitr,
   pammtools,
-  reReg
+  reReg,
+  ggplot2
+  patchwork
 NeedsCompilation: no
 URL: https://adibender.github.io/ctrecurrent/
 BugReports: https://github.com/adibender/ctrecurrent/issues
