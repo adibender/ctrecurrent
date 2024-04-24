@@ -5,9 +5,12 @@
 
 The goal of ctrecurrent is to transform the camera trap data into a
 format suitable for recurrent event analysis. It contains the function
-recurrent() to do so, requiring a dataframe with the following
-information for each observation: Site ID, Timestamp (Date and Time) and
-Species.
+`ct_to_recurrent` to do so, requiring a dataframe with the following
+information for each observation:
+
+- Site ID,
+- Timestamp (Date and Time) and
+- Species
 
 ## Installation
 
@@ -16,7 +19,5 @@ or from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("APoopFinder/ctrecurrent")
+devtools::install_github("adibender/ctrecurrent")
 ```
-
-\`\`\`

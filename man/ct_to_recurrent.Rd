@@ -8,30 +8,32 @@ ct_to_recurrent(
   data,
   primary,
   secondary,
-  survey_end_date,
-  tertiary = NULL,
+  survey_duration = 10,
   datetime_var = "DateTime",
   species_var = "Species",
   site_var = "Site",
-  survey_duration = 10
+  tertiary = NULL,
+  survey_end_date = NULL
 )
 }
 \arguments{
 \item{data}{A dataframe containing the site, the timestamp and the species information}
 
-\item{primary}{A pool of one or several species names considered to affect the secondary species}
+\item{primary}{character A vector of one or several species names considered to affect the secondary species}
 
-\item{secondary}{Name of the species affected by the primary (only one name allowed).}
+\item{secondary}{character(1) Name of the species affected by the primary (only one name allowed).}
 
-\item{survey_end_date}{Date of study end (e.g. "01-01-2001")}
+\item{survey_duration}{integer(1) Maximum duration of the survey (in days, e.g. "7")}
 
 \item{datetime_var}{Name of the variable that contains date time information.}
 
-\item{species_var}{Name of the variable that contains species information.}
+\item{species_var}{character(1) Name of the variable that contains species information.}
 
 \item{site_var}{Name of the variable that contains Site ID.}
 
-\item{survey_duration}{Maximum duration of the survey (in days, e.g. "7")}
+\item{tertiary}{character Names of the species in \code{species_var} that should not be considere primary or secondary.}
+
+\item{survey_end_date}{Date Date of study end (e.g. "01-01-2001")}
 }
 \value{
 A dataframe containing:
@@ -39,14 +41,14 @@ A dataframe containing:
 \item{Site}{Camera-trap site ID}
 \item{ID}{Survey ID}
 \item{primary}{primary species starting the survey}
-\item{DateTime_Primary}{Timestamp of the start of the survey (i.e. of the primary species observation)}
+\item{datetime_primary}{Timestamp of the start of the survey (i.e. of the primary species observation)}
 \item{DateTime}{Timestamp of the recurrent event (i.e. of the secondary species observation)}
 \item{t.start}{Time since the start of the survey}
 \item{t.stop}{Time since the last event, which can be the primary species or a previous secondary species}
 \item{event}{Binary, 1 = recurrent event, 0 = censoring event}
 \item{enum}{Event number within the survey}
 \item{Event_type}{Either the recurrent event, giving the name of the secondary species, or a censoring event and the reason of censoring}
-\item{DateTime_Primary}{Timestamp of survey start (primary observation)}
+\item{datetime_primary}{Timestamp of survey start (primary observation)}
 \item{...}{Any covariate attached to the dataset}
 }
 }
