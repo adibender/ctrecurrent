@@ -70,12 +70,12 @@ The returned dataframe can be directly used for recurrent event analysis.</p>
 <span>  <span class="va">data</span>,</span>
 <span>  <span class="va">primary</span>,</span>
 <span>  <span class="va">secondary</span>,</span>
-<span>  <span class="va">survey_end_date</span>,</span>
-<span>  tertiary <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  survey_duration <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  datetime_var <span class="op">=</span> <span class="st">"DateTime"</span>,</span>
 <span>  species_var <span class="op">=</span> <span class="st">"Species"</span>,</span>
 <span>  site_var <span class="op">=</span> <span class="st">"Site"</span>,</span>
-<span>  survey_duration <span class="op">=</span> <span class="fl">10</span></span>
+<span>  tertiary <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  survey_end_date <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -86,15 +86,15 @@ The returned dataframe can be directly used for recurrent event analysis.</p>
 
 
 <dt>primary</dt>
-<dd><p>A pool of one or several species names considered to affect the secondary species</p></dd>
+<dd><p>character A vector of one or several species names considered to affect the secondary species</p></dd>
 
 
 <dt>secondary</dt>
-<dd><p>Name of the species affected by the primary (only one name allowed).</p></dd>
+<dd><p>character(1) Name of the species affected by the primary (only one name allowed).</p></dd>
 
 
-<dt>survey_end_date</dt>
-<dd><p>Date of study end (e.g. "01-01-2001")</p></dd>
+<dt>survey_duration</dt>
+<dd><p>integer(1) Maximum duration of the survey (in days, e.g. "7")</p></dd>
 
 
 <dt>datetime_var</dt>
@@ -102,15 +102,19 @@ The returned dataframe can be directly used for recurrent event analysis.</p>
 
 
 <dt>species_var</dt>
-<dd><p>Name of the variable that contains species information.</p></dd>
+<dd><p>character(1) Name of the variable that contains species information.</p></dd>
 
 
 <dt>site_var</dt>
 <dd><p>Name of the variable that contains Site ID.</p></dd>
 
 
-<dt>survey_duration</dt>
-<dd><p>Maximum duration of the survey (in days, e.g. "7")</p></dd>
+<dt>tertiary</dt>
+<dd><p>character Names of the species in <code>species_var</code> that should not be considere primary or secondary.</p></dd>
+
+
+<dt>survey_end_date</dt>
+<dd><p>Date Date of study end (e.g. "01-01-2001")</p></dd>
 
 </dl></div>
     <div id="value">
@@ -126,7 +130,7 @@ The returned dataframe can be directly used for recurrent event analysis.</p>
 <dt>primary</dt>
 <dd><p>primary species starting the survey</p></dd>
 
-<dt>DateTime_Primary</dt>
+<dt>datetime_primary</dt>
 <dd><p>Timestamp of the start of the survey (i.e. of the primary species observation)</p></dd>
 
 <dt>DateTime</dt>
@@ -147,7 +151,7 @@ The returned dataframe can be directly used for recurrent event analysis.</p>
 <dt>Event_type</dt>
 <dd><p>Either the recurrent event, giving the name of the secondary species, or a censoring event and the reason of censoring</p></dd>
 
-<dt>DateTime_Primary</dt>
+<dt>datetime_primary</dt>
 <dd><p>Timestamp of survey start (primary observation)</p></dd>
 
 <dt>...</dt>

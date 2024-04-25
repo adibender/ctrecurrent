@@ -77,15 +77,19 @@
 <div class="section level1">
 <div class="page-header"><h1 id="ctrecurrent">ctrecurrent<a class="anchor" aria-label="anchor" href="#ctrecurrent"></a>
 </h1></div>
-<p>The goal of ctrecurrent is to transform the camera trap data into a format suitable for recurrent event analysis. It contains the function recurrent() to do so, requiring a dataframe with the following information for each observation: Site ID, Timestamp (Date and Time) and Species.</p>
+<p>The goal of ctrecurrent is to transform the camera trap data into a format suitable for recurrent event analysis. It contains the function <code>ct_to_recurrent</code> to do so, requiring a dataframe with the following information for each observation:</p>
+<ul>
+<li>Site ID,</li>
+<li>Timestamp (Date and Time) and</li>
+<li>Species</li>
+</ul>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>You can install the development version of ctrecurrent from the R-cran or from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"APoopFinder/ctrecurrent"</span><span class="op">)</span></span></code></pre></div>
-<p>```</p>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"adibender/ctrecurrent"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
   </div>
