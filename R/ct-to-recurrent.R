@@ -53,7 +53,7 @@ ct_to_recurrent = function(
   tertiary        = NULL,
   survey_end_date = NULL) {
 
-
+  browser()
   if (is.null(tertiary)) {
     tertiary = setdiff(unique(data[[species_var]]), c(primary, secondary))
   }
