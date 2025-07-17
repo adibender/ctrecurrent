@@ -12,6 +12,8 @@ information for each observation:
 - Timestamp (Date and Time) and
 - Species
 
+For full details and methodological background, please see the associated paper: [Ferry et al. (2025) Recurrent Event Analyses for Species Interactions](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.14338)
+
 ## Installation
 
 You can install the development version of ctrecurrent from the R-cran
