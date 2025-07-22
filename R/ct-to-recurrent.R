@@ -63,7 +63,7 @@ ct_to_recurrent = function(
   
   # in this block only column names that are defined in the same block are hard coded
   data = data %>%
-    mutate_if(is.factor, as.character) %>%
+    mutate(across(where(is.factor), as.character)) %>%
     filter(
       .data[[species_var]] %in% c(primary, secondary, tertiary) &
       .data[[datetime_var]] <= survey_end_date) %>%
@@ -122,15 +122,15 @@ ct_to_recurrent = function(
   CensoringInfo = data %>%
     group_by(survey_id) %>%
     slice(1) %>%
-    dplyr::select(survey_id, .data[[species_var]]) %>%
-    dplyr::rename(StartingSurvey = .data[[species_var]])
+    dplyr::select(survey_id, all_of(species_var)) %>%
+    dplyr::rename(StartingSurvey = !!rlang::sym(species_var))
   ## Primary species DateTime (required for PlotEvent function in calendar time)
   data = left_join(data, CensoringInfo) %>%
     mutate(datetime_primary = .data[[datetime_var]][1])
 
   data %<>% group_by(across(all_of(site_var))) %>%
     ## Censoring DateTime (required to calculate t.stop afterwards)
-    mutate(DateTime = if_else(Event_type == "Censoring event - Following Censoring Species",  lead(DateTime), DateTime)) %>%
+    mutate(!!rlang::sym(datetime_var) := if_else(Event_type == "Censoring event - Following Censoring Species",  lead(.data[[datetime_var]]), .data[[datetime_var]])) %>%
     # Keep only post_primary survey
     filter(StartingSurvey == primary) %>%
     # Keep only survey with at least one secondary event
@@ -153,9 +153,9 @@ ct_to_recurrent = function(
            t.stop = ifelse(t.stop > survey_duration, survey_duration, t.stop)) %>%  # t.stop of censoring event = survey duration
 
     # Column information
-    select(all_of(site_var), survey_id, datetime_primary, StartingSurvey, all_of(species_var), DateTime, t.start, t.stop, event, status, enum) %>%
+    select(all_of(site_var), survey_id, datetime_primary, StartingSurvey, all_of(species_var), all_of(datetime_var), t.start, t.stop, event, status, enum) %>%
     rename(primary = StartingSurvey,
-           secondary = all_of(species_var))
+           secondary = !!rlang::sym(species_var))
 
   return(data)
 
