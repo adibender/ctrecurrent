@@ -24,7 +24,8 @@ Imports:
     checkmate,
     dplyr,
     lubridate,
-    magrittr
+    magrittr,
+    rlang
 Suggests:
     testthat (>= 3.0.0)
 Config/Needs/website: knitr, pammtools, reReg, ggplot2, patchwork
