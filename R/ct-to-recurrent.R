@@ -61,7 +61,6 @@ ct_to_recurrent = function(
     survey_end_date = max(data[[datetime_var]])
   }
   
-  # in this block only column names that are defined in the same block are hard coded
   data = data %>%
     mutate(across(where(is.factor), as.character)) %>%
     filter(
@@ -87,7 +86,6 @@ ct_to_recurrent = function(
 
   # After secondary (needs an additional row for the censoring event)
   ## Another censoring species stops the survey
-  ### In this block only the Event_type message is hard coded
   data %<>% {bind_rows(.,
     filter(.,
       .data[[species_var]] %in% secondary &
@@ -95,13 +93,11 @@ ct_to_recurrent = function(
     mutate(Event_type = "Censoring event - Following Censoring Species"))} %>%
     arrange(.data[[site_var]], .data[[datetime_var]])
   # No censoring event (i.e. ending date not correctly defined for the site)
-  ## In this block only the Event_type message is hard coded
   data %<>%  {bind_rows(.,  filter(., .data[[species_var]] %in% secondary & is.na(lead(.data[[species_var]]))) %>%
                           mutate(Event_type = "Censoring event - CT removed"))} %>%
     arrange(.data[[site_var]], .data[[datetime_var]])
   
   # After primary (no additional row, just change the event_type status)
-  ## In this block only the Event_type message is hard coded
   data %<>% group_by(across(all_of(site_var))) %>%
     ## Another censoring species, but no secondary events in-between (censoring event = "No Secondary")
     mutate(Event_type = ifelse(
