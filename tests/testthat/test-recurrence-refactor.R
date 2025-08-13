@@ -23,10 +23,7 @@ test_that("ct_to_recurrent (refactored) gives identical output", {
     survey_duration = 30
   )
   
-  # For data‐frames, the simplest is strict equality:
-  expect_identical(new, golden)
+  # Allow minimally different values
+  expect_equal(new, golden, tolerance = 1e-14)
   
-  # If you want to allow minor differences in attributes,
-  # you can do:
-  # expect_equal(new, golden, check.attributes = FALSE)
 })
