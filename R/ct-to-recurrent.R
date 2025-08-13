@@ -149,7 +149,7 @@ ct_to_recurrent = function(
            t.stop = ifelse(t.stop > survey_duration, survey_duration, t.stop)) %>%  # t.stop of censoring event = survey duration
 
     # Column information
-    select(all_of(site_var), survey_id, datetime_primary, StartingSurvey, all_of(species_var), all_of(datetime_var), t.start, t.stop, event, status, enum) %>%
+    select(all_of(c(site_var, "survey_id", "datetime_primary", "StartingSurvey", species_var, datetime_var, "t.start", "t.stop", "event", "status", "enum"))) %>%
     rename(primary = StartingSurvey,
            secondary = !!rlang::sym(species_var))
 
