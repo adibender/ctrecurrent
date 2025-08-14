@@ -1,9 +1,10 @@
 Package: ctrecurrent
 Title: Convert Camera Trap Data Structure Into Recurrent Event Format
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(
-    person("Nicolas", "Ferry", , "ferrynicolas@me.com", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0001-5191-9648")),
+    person("Nicolas", "Ferry", , "ferrynicolas@me.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-5191-9648")),
+    person("Andreas", "Bender", , "andreas.bender@stat.uni-muenchen.de", role = c("aut"), comment=c(ORCID = "0000-0001-5628-8611")),
+    person("Rudolf", "Schwaab", , "r.schwaab@campus.lmu.de", role = c("aut"), comment=c(ORCID = "0009-0007-0404-8457")),
     person(, "Bavarian Forest National Park Administration", role = "cph")
   )
 Description: Converts camera trap data (site, timestamp, species) into a
