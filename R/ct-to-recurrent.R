@@ -39,6 +39,7 @@
 #' @import dplyr
 #' @import checkmate
 #' @importFrom lubridate ymd_hms
+#' @importFrom rlang .data :=
 #'
 #' @export
 #'
@@ -72,10 +73,10 @@ ct_to_recurrent = function(
     # ID of the primary event (Site + Primary event number)
     mutate(PrimaryObs = ifelse(.data[[species_var]] %in% c(primary), 1, 0) %>% cumsum(),
            CensoringObs =  ifelse(.data[[species_var]] %in% c(primary, tertiary), 1, 0) %>% cumsum(),
-           survey_id = paste0(.data[[site_var]], "-", CensoringObs)) %>%
+           survey_id = paste0(.data[[site_var]], "-", .data[["CensoringObs"]])) %>%
 
     # Remove secondary events before the first primary events
-    filter(PrimaryObs != 0) %>%
+    filter(.data[["PrimaryObs"]] != 0) %>%
 
     # Event type (now = species, later will be change by the type of censoring event if needed)
     mutate(Event_type = .data[[species_var]]) %>%
@@ -102,23 +103,23 @@ ct_to_recurrent = function(
     ## Another censoring species, but no secondary events in-between (censoring event = "No Secondary")
     mutate(Event_type = ifelse(
       .data[[species_var]] %in% primary &
-        lead(.data[[species_var]]) %in% c(primary, tertiary), "Censoring event - No Secondary", Event_type)) %>%
+        lead(.data[[species_var]]) %in% c(primary, tertiary), "Censoring event - No Secondary", .data[["Event_type"]])) %>%
     ## No censoring event (i.e. ending date not correctly defined for the site)
     mutate(Event_type = ifelse(.data[[species_var]] %in% primary &
-      is.na(lead(.data[[species_var]])), "Censoring event - CT removed", Event_type)) %>%
+      is.na(lead(.data[[species_var]])), "Censoring event - CT removed", .data[["Event_type"]])) %>%
 
     # Add event information (1 = event, 0 = censoring)
-    mutate(event = ifelse(Event_type %in% secondary, 1, 0),
+    mutate(event = ifelse(.data[["Event_type"]] %in% secondary, 1, 0),
            status = 0) %>%
-    group_by(survey_id)
+    group_by(across(all_of("survey_id")))
 
 
   # Add primary event information
   ## Species name starting the survey
   CensoringInfo = data %>%
-    group_by(survey_id) %>%
+    group_by(across(all_of("survey_id"))) %>%
     slice(1) %>%
-    dplyr::select(survey_id, all_of(species_var)) %>%
+    dplyr::select(all_of(c("survey_id", species_var))) %>%
     dplyr::rename(StartingSurvey = !!rlang::sym(species_var))
   ## Primary species DateTime (required for PlotEvent function in calendar time)
   data = left_join(data, CensoringInfo) %>%
@@ -126,31 +127,31 @@ ct_to_recurrent = function(
 
   data %<>% group_by(across(all_of(site_var))) %>%
     ## Censoring DateTime (required to calculate t.stop afterwards)
-    mutate(!!rlang::sym(datetime_var) := if_else(Event_type == "Censoring event - Following Censoring Species",  lead(.data[[datetime_var]]), .data[[datetime_var]])) %>%
+    mutate(!!rlang::sym(datetime_var) := if_else(.data[["Event_type"]] == "Censoring event - Following Censoring Species",  lead(.data[[datetime_var]]), .data[[datetime_var]])) %>%
     # Keep only post_primary survey
-    filter(StartingSurvey == primary) %>%
+    filter(.data[["StartingSurvey"]] == primary) %>%
     # Keep only survey with at least one secondary event
-    group_by(survey_id) %>%
-    filter(any(event==1)) %>%
+    group_by(across(all_of("survey_id"))) %>%
+    filter(any(.data[["event"]]==1)) %>%
     # Calculate t.start and t.stop
     mutate(t.stop = ifelse(is.na(lag(.data[[datetime_var]])), 0, # Primary event: t.stop = 0
                            ifelse(lag(.data[[datetime_var]]) == .data[[datetime_var]], difftime(.data[[datetime_var]]+1, lag(.data[[datetime_var]]), units  = "days"), # Ties forbidden -> add 1 sec
                                   difftime(.data[[datetime_var]], lag(.data[[datetime_var]]), units  = "days"))) %>% cumsum(),               # Secondary events: t.stop = cumulative time between previous events
-           t.start = lag(t.stop)) %>%
+           t.start = lag(.data[["t.stop"]])) %>%
     # Remove primary events
     filter(!(.data[[species_var]] %in% primary)) %>%
     # Secondary event number
     mutate(enum = row_number())
 
   # Remove event after survey duration limit
-  data %<>% filter(t.start < survey_duration) %>%
-    mutate(event  = ifelse(t.stop > survey_duration, 0, event),
-           Event_type = ifelse(t.stop > survey_duration, "Censoring event - Survey end", Event_type),  # Censoring event
-           t.stop = ifelse(t.stop > survey_duration, survey_duration, t.stop)) %>%  # t.stop of censoring event = survey duration
+  data %<>% filter(.data[["t.start"]] < survey_duration) %>%
+    mutate(event  = ifelse(.data[["t.stop"]] > survey_duration, 0, .data[["event"]]),
+           Event_type = ifelse(.data[["t.stop"]] > survey_duration, "Censoring event - Survey end", .data[["Event_type"]]),  # Censoring event
+           t.stop = ifelse(.data[["t.stop"]] > survey_duration, survey_duration, .data[["t.stop"]])) %>%  # t.stop of censoring event = survey duration
 
     # Column information
     select(all_of(c(site_var, "survey_id", "datetime_primary", "StartingSurvey", species_var, datetime_var, "t.start", "t.stop", "event", "status", "enum"))) %>%
-    rename(primary = StartingSurvey,
+    rename(primary = !!rlang::sym("StartingSurvey"),
            secondary = !!rlang::sym(species_var))
 
   return(data)
