@@ -121,7 +121,7 @@ ct_to_recurrent = function(
 
   data <- data %>% group_by(across(all_of(site_var))) %>%
     mutate(!!rlang::sym(datetime_var) := if_else(.data[["Event_type"]] == "Censoring event - Following Censoring Species",  lead(.data[[datetime_var]]), .data[[datetime_var]])) %>%
-    filter(.data[["StartingSurvey"]] == primary) %>% # Keep only post_primary survey
+    filter(.data[["StartingSurvey"]] %in% primary) %>% # Keep only post_primary survey
     group_by(across(all_of("survey_id"))) %>%
     filter(any(.data[["event"]]==1)) %>% # Keep only survey with at least one secondary event
     mutate(t.stop = ifelse(is.na(lag(.data[[datetime_var]])), 0, # Primary event: t.stop = 0
