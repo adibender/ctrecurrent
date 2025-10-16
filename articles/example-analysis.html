@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ctrecurrent</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -56,7 +56,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/adibender/ctrecurent" class="external-link">
+  <a href="https://github.com/adibender/ctrecurrent/" class="external-link">
     <span class="fa fa-github fa-lg"></span>
 
   </a>
@@ -77,7 +77,7 @@
       <h1 data-toc-skip>Transform camera trap data to recurrent events
 data</h1>
             
-            <h4 data-toc-skip class="date">2025-07-17</h4>
+            <h4 data-toc-skip class="date">2025-10-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/adibender/ctrecurrent/blob/main/vignettes/example-analysis.Rmd" class="external-link"><code>vignettes/example-analysis.Rmd</code></a></small>
       <div class="hidden name"><code>example-analysis.Rmd</code></div>
@@ -120,7 +120,7 @@ with the package:</p>
 <span><span class="co">##     filter</span></span></code></pre>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme_get.html" class="external-link">theme_set</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/get_theme.html" class="external-link">theme_set</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/stc04003/reReg" class="external-link">reReg</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://adibender.github.io/ctrecurrent/" class="external-link">ctrecurrent</a></span><span class="op">)</span></span>
@@ -150,7 +150,7 @@ with the package:</p>
 <p>As we can see above, the camera captured different types of objects.
 In the analysis below, we will focus on “Deer” as the primary species
 and “Coyote” as secondary. Everything else will be considered tertiary
-species. Thse <code>matrix</code> covariate contains information about
+species. The <code>matrix</code> covariate contains information about
 the environment in which the camera is placed, either agriculturally
 developed or forest.</p>
 </div>
@@ -267,16 +267,20 @@ and <a href="https://adibender.github.io/pammtools/articles/recurrent-events.htm
 <span>  data <span class="op">=</span> <span class="va">data</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">"Time in days"</span>,</span>
 <span>  ylab <span class="op">=</span> <span class="st">"Subjects arranged by terminal time"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning in geom_bar(stat = "identity", fill = ctrl$bar.color, width =</span></span>
+<span><span class="co">## ctrl$width): Ignoring empty aesthetic: `width`.</span></span></code></pre>
 <p><img src="example-analysis_files/figure-html/unnamed-chunk-4-1.png" width="480" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># By levels of matrix landscape</span></span>
 <span><span class="fu">reReg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/reReg/man/plotEvents.html" class="external-link">plotEvents</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://wwenjie.org/reda/reference/Recur.html" class="external-link">Recur</a></span><span class="op">(</span><span class="va">t.start</span> <span class="op"><a href="https://wwenjie.org/reda/reference/Recur-to.html" class="external-link">%to%</a></span> <span class="va">t.stop</span>, <span class="va">survey_id</span>, <span class="va">event</span>, <span class="va">status</span><span class="op">)</span> <span class="op">~</span> <span class="va">matrix</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">data</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">"Time in days"</span>,</span>
 <span>  ylab <span class="op">=</span> <span class="st">"Subjects arranged by terminal time"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning in geom_bar(stat = "identity", fill = ctrl$bar.color, width =</span></span>
+<span><span class="co">## ctrl$width): Ignoring empty aesthetic: `width`.</span></span></code></pre>
 <p><img src="example-analysis_files/figure-html/unnamed-chunk-4-2.png" width="480" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># PED transformation</span></span>
 <span><span class="va">ped</span> <span class="op">=</span> <span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://adibender.github.io/pammtools/reference/as_ped.html" class="external-link">as_ped</a></span><span class="op">(</span></span>
@@ -321,14 +325,14 @@ has its own baseline hazard)</li>
 <code>m_re</code>: As <code>m_tv</code> but with random effect for
 camera trap site</li>
 </ul>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Baseline model</span></span>
 <span><span class="va">m_null</span> <span class="op">=</span> <span class="fu"><a href="https://adibender.github.io/pammtools/reference/pamm.html" class="external-link">pamm</a></span><span class="op">(</span></span>
 <span>  formula <span class="op">=</span> <span class="va">ped_status</span> <span class="op">~</span> <span class="fu">s</span><span class="op">(</span><span class="va">tend</span><span class="op">)</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">ped</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Warning: glm.fit: fitted rates numerically 0 occurred</span></span>
 <span><span class="co">## Warning: glm.fit: fitted rates numerically 0 occurred</span></span></code></pre>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">m_null</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## Family: poisson </span></span>
@@ -351,14 +355,14 @@ camera trap site</li>
 <span><span class="co">## </span></span>
 <span><span class="co">## R-sq.(adj) =  -0.00655   Deviance explained = 2.95%</span></span>
 <span><span class="co">## UBRE = -0.89609  Scale est. = 1         n = 12521</span></span></code></pre>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Proporitional hazards effect of landscape (matrix)</span></span>
 <span><span class="va">m_ph</span> <span class="op">=</span> <span class="fu"><a href="https://adibender.github.io/pammtools/reference/pamm.html" class="external-link">pamm</a></span><span class="op">(</span></span>
 <span>  formula <span class="op">=</span> <span class="va">ped_status</span> <span class="op">~</span> <span class="va">matrix</span> <span class="op">+</span> <span class="fu">s</span><span class="op">(</span><span class="va">tend</span><span class="op">)</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">ped</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Warning: glm.fit: fitted rates numerically 0 occurred</span></span>
 <span><span class="co">## Warning: glm.fit: fitted rates numerically 0 occurred</span></span></code></pre>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">m_ph</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## Family: poisson </span></span>
@@ -382,7 +386,7 @@ camera trap site</li>
 <span><span class="co">## </span></span>
 <span><span class="co">## R-sq.(adj) =  -0.0066   Deviance explained = 2.98%</span></span>
 <span><span class="co">## UBRE = -0.89596  Scale est. = 1         n = 12521</span></span></code></pre>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="co"># Time-varying covariate effect</span></span>
 <span><span class="va">m_tv</span> <span class="op">=</span> <span class="fu"><a href="https://adibender.github.io/pammtools/reference/pamm.html" class="external-link">pamm</a></span><span class="op">(</span></span>
 <span>  formula <span class="op">=</span> <span class="va">ped_status</span> <span class="op">~</span> <span class="va">matrix</span> <span class="op">+</span> <span class="fu">s</span><span class="op">(</span><span class="va">tend</span><span class="op">)</span> <span class="op">+</span></span>
@@ -391,7 +395,7 @@ camera trap site</li>
 <span>  engine <span class="op">=</span> <span class="st">"bam"</span>, method <span class="op">=</span> <span class="st">"fREML"</span>,  discrete <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Warning in bgam.fitd(G, mf, gp, scale, nobs.extra = 0, rho = rho, coef = coef,</span></span>
 <span><span class="co">## : fitted rates numerically 0 occurred</span></span></code></pre>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">m_tv</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## Family: poisson </span></span>
@@ -416,7 +420,7 @@ camera trap site</li>
 <span><span class="co">## </span></span>
 <span><span class="co">## R-sq.(adj) =  -0.00675   Deviance explained = -14.2%</span></span>
 <span><span class="co">## fREML =  12161  Scale est. = 1         n = 12521</span></span></code></pre>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="va">m_re</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://adibender.github.io/pammtools/reference/pamm.html" class="external-link">pamm</a></span><span class="op">(</span></span>
 <span>  formula <span class="op">=</span> <span class="va">ped_status</span> <span class="op">~</span> <span class="va">matrix</span> <span class="op">+</span> <span class="fu">s</span><span class="op">(</span><span class="va">tend</span><span class="op">)</span> <span class="op">+</span> <span class="fu">s</span><span class="op">(</span><span class="va">tend</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.ordered</a></span><span class="op">(</span><span class="va">matrix</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">s</span><span class="op">(</span><span class="va">Site</span>, bs <span class="op">=</span> <span class="st">"re"</span><span class="op">)</span>,</span>
@@ -424,7 +428,7 @@ camera trap site</li>
 <span> <span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Warning in bgam.fitd(G, mf, gp, scale, nobs.extra = 0, rho = rho, coef = coef,</span></span>
 <span><span class="co">## : fitted rates numerically 0 occurred</span></span></code></pre>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">m_re</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## Family: poisson </span></span>
@@ -472,7 +476,7 @@ functions for the first two steps.</p>
 coyotes lasts for about 5 days. Afterwards the hazard for the occurence
 of coyotes is constant (the wigglines can be ignored since the
 uncertainty is quiet high).</p>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="co"># Null model</span></span>
 <span><span class="va">ndf_null</span> <span class="op">&lt;-</span> <span class="va">ped</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://adibender.github.io/pammtools/reference/newdata.html" class="external-link">make_newdata</a></span><span class="op">(</span>tend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">tend</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -489,7 +493,7 @@ category of landscape (<code>matrix</code>) in one plot (left panel) and
 their hazard ratio(right panel). This indicates (hazard ratio = 1), that
 given a sighting of a deer (primary), occurence of coyotes is not
 affected by the type of landscape in which the deer was sighted.</p>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Stratified hazards</span></span>
 <span><span class="va">ndf_tv</span> <span class="op">&lt;-</span> <span class="va">ped</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://adibender.github.io/pammtools/reference/newdata.html" class="external-link">make_newdata</a></span><span class="op">(</span>tend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">tend</span><span class="op">)</span>, matrix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">matrix</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -532,7 +536,7 @@ can extend the provided functionality.<a href="#fnref1" class="footnote-back">�
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Nicolas Ferry.</p>
+<p>Developed by Nicolas Ferry, Andreas Bender, Rudolf Schwaab.</p>
 </div>
 
 <div class="pkgdown">
