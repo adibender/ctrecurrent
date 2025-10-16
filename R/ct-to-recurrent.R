@@ -52,7 +52,17 @@ ct_to_recurrent = function(
   site_var        = "Site",
   tertiary        = NULL,
   survey_end_date = NULL) {
-
+  
+  # Check inputs
+  checkmate::assert_data_frame(data)
+  checkmate::assert_character(primary, any.missing = FALSE, min.len = 1, unique = TRUE)
+  checkmate::assert_string(secondary)
+  checkmate::assert_integerish(survey_duration, len = 1, any.missing = FALSE)
+  checkmate::assert_string(datetime_var)
+  checkmate::assert_class(data[[datetime_var]], "POSIXt")
+  checkmate::assert_string(species_var)
+  checkmate::assert_string(site_var)
+  
   if (is.null(tertiary)) {
     tertiary = setdiff(unique(data[[species_var]]), c(primary, secondary))
   }
