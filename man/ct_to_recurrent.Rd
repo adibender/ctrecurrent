@@ -48,7 +48,6 @@ A dataframe containing:
 \item{event}{Binary, 1 = recurrent event, 0 = censoring event}
 \item{enum}{Event number within the survey}
 \item{Event_type}{Either the recurrent event, giving the name of the secondary species, or a censoring event and the reason of censoring}
-\item{datetime_primary}{Timestamp of survey start (primary observation)}
 \item{...}{Any covariate attached to the dataset}
 }
 }
