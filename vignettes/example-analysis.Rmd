@@ -46,7 +46,7 @@ table(murphy$matrix)
 As we can see above, the camera captured different types of objects. In
 the analysis below, we will focus on "Deer" as the primary species and "Coyote"
 as secondary. Everything else will be considered tertiary species.
-Thse `matrix` covariate contains information about the environment in which the camera is placed, either agriculturally developed or forest.
+The `matrix` covariate contains information about the environment in which the camera is placed, either agriculturally developed or forest.
 
 
 ## Defining the parameters of the survey
