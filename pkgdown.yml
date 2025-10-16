@@ -3,7 +3,7 @@ pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   example-analysis: example-analysis.html
-last_built: 2025-10-16T10:17Z
+last_built: 2025-10-16T10:19Z
 urls:
   reference: https://adibender.github.io/ctrecurent/reference
   article: https://adibender.github.io/ctrecurent/articles
