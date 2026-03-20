@@ -13,7 +13,8 @@
 #' @param secondary character(1) Name of the species affected by the primary (only one name allowed).
 #' @param tertiary character Names of the species in \code{species_var} that should not be considere primary or secondary.
 #' @param survey_end_date Date Date of study end (e.g. "01-01-2001")
-#' @param survey_duration integer(1) Maximum duration of the survey (in days, e.g. "7")
+#' @param survey_duration numeric(1) Maximum duration of the survey in the unit specified by \code{time_unit} (e.g. \code{7} for 7 days or \code{48} for 48 hours).
+#' @param time_unit character(1) Time unit for \code{survey_duration} and the resulting \code{t.start}/\code{t.stop} columns. One of \code{"days"} (default), \code{"hours"}, \code{"mins"}, \code{"secs"}, or \code{"weeks"}.
 #' @param species_var character(1) Name of the variable that contains species information.
 #' @param datetime_var Name of the variable that contains date time information.
 #' @param site_var Name of the variable that contains Site ID.
@@ -47,17 +48,19 @@ ct_to_recurrent = function(
   primary,
   secondary,
   survey_duration = 10,
+  time_unit       = "days",
   datetime_var    = "DateTime",
   species_var     = "Species",
   site_var        = "Site",
   tertiary        = NULL,
   survey_end_date = NULL) {
-  
+
   # Check inputs
   checkmate::assert_data_frame(data)
   checkmate::assert_character(primary, any.missing = FALSE, min.len = 1, unique = TRUE)
   checkmate::assert_string(secondary)
-  checkmate::assert_integerish(survey_duration, len = 1, any.missing = FALSE)
+  checkmate::assert_numeric(survey_duration, len = 1, any.missing = FALSE, lower = 0)
+  checkmate::assert_choice(time_unit, choices = c("secs", "mins", "hours", "days", "weeks"))
   checkmate::assert_string(datetime_var)
   checkmate::assert_class(data[[datetime_var]], "POSIXt")
   checkmate::assert_string(species_var)
@@ -135,8 +138,8 @@ ct_to_recurrent = function(
     group_by(across(all_of("survey_id"))) %>%
     filter(any(.data[["event"]]==1)) %>% # Keep only survey with at least one secondary event
     mutate(t.stop = ifelse(is.na(lag(.data[[datetime_var]])), 0, # Primary event: t.stop = 0
-                           ifelse(lag(.data[[datetime_var]]) == .data[[datetime_var]], difftime(.data[[datetime_var]]+1, lag(.data[[datetime_var]]), units  = "days"), # Ties forbidden -> add 1 sec
-                                  difftime(.data[[datetime_var]], lag(.data[[datetime_var]]), units  = "days"))) %>% cumsum(), # Secondary events: t.stop = cumulative time between previous events
+                           ifelse(lag(.data[[datetime_var]]) == .data[[datetime_var]], difftime(.data[[datetime_var]]+1, lag(.data[[datetime_var]]), units = time_unit), # Ties forbidden -> add 1 sec
+                                  difftime(.data[[datetime_var]], lag(.data[[datetime_var]]), units = time_unit))) %>% cumsum(), # Secondary events: t.stop = cumulative time between previous events
            t.start = lag(.data[["t.stop"]])) %>%
     filter(!(.data[[species_var]] %in% primary)) %>% # Remove primary events
     mutate(enum = row_number()) # Secondary event number
