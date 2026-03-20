@@ -9,6 +9,7 @@ ct_to_recurrent(
   primary,
   secondary,
   survey_duration = 10,
+  time_unit = "days",
   datetime_var = "DateTime",
   species_var = "Species",
   site_var = "Site",
@@ -23,7 +24,9 @@ ct_to_recurrent(
 
 \item{secondary}{character(1) Name of the species affected by the primary (only one name allowed).}
 
-\item{survey_duration}{integer(1) Maximum duration of the survey (in days, e.g. "7")}
+\item{survey_duration}{numeric(1) Maximum duration of the survey in the unit specified by \code{time_unit} (e.g. \code{7} for 7 days or \code{48} for 48 hours).}
+
+\item{time_unit}{character(1) Time unit for \code{survey_duration} and the resulting \code{t.start}/\code{t.stop} columns. One of \code{"days"} (default), \code{"hours"}, \code{"mins"}, \code{"secs"}, or \code{"weeks"}.}
 
 \item{datetime_var}{Name of the variable that contains date time information.}
 

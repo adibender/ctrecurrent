@@ -48,12 +48,12 @@ ct_to_recurrent = function(
   primary,
   secondary,
   survey_duration = 10,
-  time_unit       = "days",
   datetime_var    = "DateTime",
   species_var     = "Species",
   site_var        = "Site",
   tertiary        = NULL,
-  survey_end_date = NULL) {
+  survey_end_date = NULL,
+  time_unit       = "days") {
 
   # Check inputs
   checkmate::assert_data_frame(data)
