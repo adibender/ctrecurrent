@@ -93,7 +93,7 @@ ct_to_recurrent = function(
       "Event_type"))) %>%
     arrange(.data[[site_var]], .data[[datetime_var]])
 
-  # ---------- FIX A: precompute next species/time on a clean snapshot ----------
+  # Precompute next species/time on a clean snapshot to avoid duplicate censoring rows
   base <- data %>%
     group_by(across(all_of(site_var))) %>%
     arrange(.data[[datetime_var]], .by_group = TRUE) %>%
