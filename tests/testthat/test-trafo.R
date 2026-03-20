@@ -92,3 +92,34 @@ test_that("non-numeric survey_duration throws an error", {
     regexp = "survey_duration"
   )
 })
+
+test_that("no duplicate censoring rows when secondary is followed by a censoring species", {
+  # Minimal synthetic case: Deer -> Coyote -> Bear (tertiary)
+  # The old lead()-based bind_rows approach produced a spurious extra "CT removed"
+  # row for the censoring row added by "Following Censoring Species", because
+  # the newly added row had species=Coyote and lead()=NA in the modified data.
+  # Fix A (precomputing next_species/next_time on a clean snapshot) prevents this.
+  dat <- data.frame(
+    Site     = "A",
+    Species  = c("Deer", "Coyote", "Bear"),
+    DateTime = as.POSIXct(c("2020-01-01 08:00:00",
+                             "2020-01-03 08:00:00",
+                             "2020-01-05 08:00:00")),
+    stringsAsFactors = FALSE
+  )
+
+  recu <- ct_to_recurrent(
+    dat,
+    primary         = "Deer",
+    secondary       = "Coyote",
+    tertiary        = "Bear",
+    survey_duration = 30
+  )
+
+  # Should have exactly 2 rows: 1 event (Coyote) + 1 censoring (Bear stops survey)
+  expect_equal(nrow(recu), 2L)
+  expect_equal(sum(recu$event), 1L)
+
+  # No duplicate rows
+  expect_equal(nrow(unique(recu)), nrow(recu))
+})
