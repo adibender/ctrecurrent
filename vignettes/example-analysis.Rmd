@@ -29,7 +29,7 @@ following information for each observation^[If your data is a different format, 
 ## Overview of the raw data
 In the first step we look at the `?murphy` data available with the package:
 
-```{r eval = TRUE}
+```{r eval = TRUE, message = FALSE, warning = FALSE}
 library(dplyr)
 library(pammtools)
 library(ggplot2)
@@ -46,7 +46,7 @@ table(murphy$matrix)
 As we can see above, the camera captured different types of objects. In
 the analysis below, we will focus on "Deer" as the primary species and "Coyote"
 as secondary. Everything else will be considered tertiary species.
-Thse `matrix` covariate contains information about the environment in which the camera is placed, either agriculturally developed or forest.
+The `matrix` covariate contains information about the environment in which the camera is placed, either agriculturally developed or forest.
 
 
 ## Defining the parameters of the survey
@@ -207,7 +207,7 @@ of landscape (`matrix`) in one plot (left panel) and their hazard ratio(right pa
 This indicates (hazard ratio = 1), that given a sighting of a deer (primary),
 occurence of coyotes is not affected by the type of landscape in which the deer was sighted.
 
-```{r, fig.width = 6, fig.height= 3}
+```{r, fig.width = 10, fig.height= 3}
 # Stratified hazards
 ndf_tv <- ped %>%
     make_newdata(tend = unique(tend), matrix = unique(matrix)) %>%

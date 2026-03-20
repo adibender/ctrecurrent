@@ -13,7 +13,8 @@ ct_to_recurrent(
   species_var = "Species",
   site_var = "Site",
   tertiary = NULL,
-  survey_end_date = NULL
+  survey_end_date = NULL,
+  time_unit = "days"
 )
 }
 \arguments{
@@ -23,7 +24,7 @@ ct_to_recurrent(
 
 \item{secondary}{character(1) Name of the species affected by the primary (only one name allowed).}
 
-\item{survey_duration}{integer(1) Maximum duration of the survey (in days, e.g. "7")}
+\item{survey_duration}{numeric(1) Maximum duration of the survey in the unit specified by \code{time_unit} (e.g. \code{7} for 7 days or \code{48} for 48 hours).}
 
 \item{datetime_var}{Name of the variable that contains date time information.}
 
@@ -34,6 +35,8 @@ ct_to_recurrent(
 \item{tertiary}{character Names of the species in \code{species_var} that should not be considere primary or secondary.}
 
 \item{survey_end_date}{Date Date of study end (e.g. "01-01-2001")}
+
+\item{time_unit}{character(1) Time unit for \code{survey_duration} and the resulting \code{t.start}/\code{t.stop} columns. One of \code{"days"} (default), \code{"hours"}, \code{"mins"}, \code{"secs"}, or \code{"weeks"}.}
 }
 \value{
 A dataframe containing:
@@ -48,7 +51,6 @@ A dataframe containing:
 \item{event}{Binary, 1 = recurrent event, 0 = censoring event}
 \item{enum}{Event number within the survey}
 \item{Event_type}{Either the recurrent event, giving the name of the secondary species, or a censoring event and the reason of censoring}
-\item{datetime_primary}{Timestamp of survey start (primary observation)}
 \item{...}{Any covariate attached to the dataset}
 }
 }
