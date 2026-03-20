@@ -9,12 +9,12 @@ ct_to_recurrent(
   primary,
   secondary,
   survey_duration = 10,
-  time_unit = "days",
   datetime_var = "DateTime",
   species_var = "Species",
   site_var = "Site",
   tertiary = NULL,
-  survey_end_date = NULL
+  survey_end_date = NULL,
+  time_unit = "days"
 )
 }
 \arguments{
@@ -26,8 +26,6 @@ ct_to_recurrent(
 
 \item{survey_duration}{numeric(1) Maximum duration of the survey in the unit specified by \code{time_unit} (e.g. \code{7} for 7 days or \code{48} for 48 hours).}
 
-\item{time_unit}{character(1) Time unit for \code{survey_duration} and the resulting \code{t.start}/\code{t.stop} columns. One of \code{"days"} (default), \code{"hours"}, \code{"mins"}, \code{"secs"}, or \code{"weeks"}.}
-
 \item{datetime_var}{Name of the variable that contains date time information.}
 
 \item{species_var}{character(1) Name of the variable that contains species information.}
@@ -37,6 +35,8 @@ ct_to_recurrent(
 \item{tertiary}{character Names of the species in \code{species_var} that should not be considere primary or secondary.}
 
 \item{survey_end_date}{Date Date of study end (e.g. "01-01-2001")}
+
+\item{time_unit}{character(1) Time unit for \code{survey_duration} and the resulting \code{t.start}/\code{t.stop} columns. One of \code{"days"} (default), \code{"hours"}, \code{"mins"}, \code{"secs"}, or \code{"weeks"}.}
 }
 \value{
 A dataframe containing:
