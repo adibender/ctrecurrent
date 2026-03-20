@@ -29,7 +29,7 @@ following information for each observation^[If your data is a different format, 
 ## Overview of the raw data
 In the first step we look at the `?murphy` data available with the package:
 
-```{r eval = TRUE}
+```{r eval = TRUE, message = FALSE, warning = FALSE}
 library(dplyr)
 library(pammtools)
 library(ggplot2)
