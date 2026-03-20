@@ -71,12 +71,12 @@ The returned dataframe can be directly used for recurrent event analysis.</p>
 <span>  <span class="va">primary</span>,</span>
 <span>  <span class="va">secondary</span>,</span>
 <span>  survey_duration <span class="op">=</span> <span class="fl">10</span>,</span>
-<span>  time_unit <span class="op">=</span> <span class="st">"days"</span>,</span>
 <span>  datetime_var <span class="op">=</span> <span class="st">"DateTime"</span>,</span>
 <span>  species_var <span class="op">=</span> <span class="st">"Species"</span>,</span>
 <span>  site_var <span class="op">=</span> <span class="st">"Site"</span>,</span>
 <span>  tertiary <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  survey_end_date <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  survey_end_date <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  time_unit <span class="op">=</span> <span class="st">"days"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -100,10 +100,6 @@ The returned dataframe can be directly used for recurrent event analysis.</p>
 <dd><p>numeric(1) Maximum duration of the survey in the unit specified by <code>time_unit</code> (e.g. <code>7</code> for 7 days or <code>48</code> for 48 hours).</p></dd>
 
 
-<dt id="arg-time-unit">time_unit<a class="anchor" aria-label="anchor" href="#arg-time-unit"></a></dt>
-<dd><p>character(1) Time unit for <code>survey_duration</code> and the resulting <code>t.start</code>/<code>t.stop</code> columns. One of <code>"days"</code> (default), <code>"hours"</code>, <code>"mins"</code>, <code>"secs"</code>, or <code>"weeks"</code>.</p></dd>
-
-
 <dt id="arg-datetime-var">datetime_var<a class="anchor" aria-label="anchor" href="#arg-datetime-var"></a></dt>
 <dd><p>Name of the variable that contains date time information.</p></dd>
 
@@ -122,6 +118,10 @@ The returned dataframe can be directly used for recurrent event analysis.</p>
 
 <dt id="arg-survey-end-date">survey_end_date<a class="anchor" aria-label="anchor" href="#arg-survey-end-date"></a></dt>
 <dd><p>Date Date of study end (e.g. "01-01-2001")</p></dd>
+
+
+<dt id="arg-time-unit">time_unit<a class="anchor" aria-label="anchor" href="#arg-time-unit"></a></dt>
+<dd><p>character(1) Time unit for <code>survey_duration</code> and the resulting <code>t.start</code>/<code>t.stop</code> columns. One of <code>"days"</code> (default), <code>"hours"</code>, <code>"mins"</code>, <code>"secs"</code>, or <code>"weeks"</code>.</p></dd>
 
 </dl></div>
     <div id="value">
