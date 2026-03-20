@@ -102,24 +102,9 @@ observation<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>:</p>
 <p>In the first step we look at the <code><a href="../reference/murphy.html">?murphy</a></code> data available
 with the package:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## </span></span>
-<span><span class="co">## Attaching package: 'dplyr'</span></span></code></pre>
-<pre><code><span><span class="co">## The following objects are masked from 'package:stats':</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##     filter, lag</span></span></code></pre>
-<pre><code><span><span class="co">## The following objects are masked from 'package:base':</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##     intersect, setdiff, setequal, union</span></span></code></pre>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://adibender.github.io/pammtools/" class="external-link">pammtools</a></span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## </span></span>
-<span><span class="co">## Attaching package: 'pammtools'</span></span></code></pre>
-<pre><code><span><span class="co">## The following object is masked from 'package:stats':</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##     filter</span></span></code></pre>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://adibender.github.io/pammtools/" class="external-link">pammtools</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/get_theme.html" class="external-link">theme_set</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/stc04003/reReg" class="external-link">reReg</a></span><span class="op">)</span></span>
@@ -135,14 +120,14 @@ with the package:</p>
 <span><span class="co">## <span style="color: #BCBCBC;">4</span> 2016BE02 Fawn    2016-08-15 <span style="color: #949494;">15:59:00</span> agdev </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">5</span> 2016BE02 Coyote  2016-08-16 <span style="color: #949494;">21:41:00</span> agdev </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">6</span> 2016BE02 Coyote  2016-08-19 <span style="color: #949494;">06:53:00</span> agdev</span></span></code></pre>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">murphy</span><span class="op">$</span><span class="va">Species</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "Bear"      "Fawn"      "Coyote"    "Bobcat"    "Human"     "Deer"     </span></span>
 <span><span class="co">## [7] "Motorized"</span></span></code></pre>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="va">murphy</span><span class="op">$</span><span class="va">DateTime</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "2016-05-23 20:41:00 UTC" "2017-09-12 09:03:00 UTC"</span></span></code></pre>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">murphy</span><span class="op">$</span><span class="va">matrix</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">##  agdev forest </span></span>
@@ -168,7 +153,7 @@ date of the study. The last two arguments do not necessarily need to be
 specified, the default is to take all species outside of primary and
 secondary as tertiary and the maximum date in the data as survey end
 date.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">primary</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Deer"</span><span class="op">)</span></span>
 <span><span class="va">secondary</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Coyote"</span><span class="op">)</span></span>
 <span></span>
@@ -204,7 +189,7 @@ the time-axis in intervals which facilitates estimation of the hazard
 for an occurence of the secondary species (see <a href="https://adibender.github.io/pammtools/articles/data-transformation.html" class="external-link">here</a>
 and <a href="https://adibender.github.io/pammtools/articles/recurrent-events.html" class="external-link">here</a>)</li>
 </ol>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Step 1) transform to recurrent event format</span></span>
 <span><span class="co"># note that datetime_var, species_var and site_var have defaults, but they need to</span></span>
 <span><span class="co"># be adjusted if your column names are different</span></span>
@@ -219,7 +204,7 @@ and <a href="https://adibender.github.io/pammtools/articles/recurrent-events.htm
 <span>  survey_end_date <span class="op">=</span> <span class="va">end_date</span>,</span>
 <span>  survey_duration <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Joining with `by = join_by(survey_id)`</span></span></code></pre>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">recu</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">Site</span>, <span class="va">survey_id</span>, <span class="va">t.start</span>, <span class="va">t.stop</span>, <span class="va">event</span>, <span class="va">status</span>, <span class="va">enum</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 221 × 7</span></span></span>
 <span><span class="co">## <span style="color: #949494;"># Groups:   survey_id [99]</span></span></span>
@@ -236,14 +221,14 @@ and <a href="https://adibender.github.io/pammtools/articles/recurrent-events.htm
 <span><span class="co">## <span style="color: #BCBCBC;"> 9</span> 2016ROTH23 2016ROTH23-1   0     20.8       1      0     1</span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">10</span> 2016ROTH23 2016ROTH23-1  20.8   30         0      0     2</span></span>
 <span><span class="co">## <span style="color: #949494;"># ℹ 211 more rows</span></span></span></code></pre>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Merge covariate information with recurrent events data table</span></span>
 <span><span class="va">cov</span> <span class="op">=</span> <span class="va">murphy</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">Site</span>, <span class="va">matrix</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">data</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">recu</span>, <span class="va">cov</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Joining with `by = join_by(Site)`</span></span></code></pre>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">Site</span>, <span class="va">survey_id</span>, <span class="va">primary</span>, <span class="va">secondary</span>, <span class="va">t.start</span>, <span class="va">t.stop</span>, <span class="va">event</span>, <span class="va">matrix</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 221 × 8</span></span></span>
 <span><span class="co">## <span style="color: #949494;"># Groups:   survey_id [99]</span></span></span>
@@ -260,7 +245,7 @@ and <a href="https://adibender.github.io/pammtools/articles/recurrent-events.htm
 <span><span class="co">## <span style="color: #BCBCBC;"> 9</span> 2016ROTH23 2016ROTH23-1 Deer    Coyote      0     20.8       1 agdev </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">10</span> 2016ROTH23 2016ROTH23-1 Deer    Coyote     20.8   30         0 agdev </span></span>
 <span><span class="co">## <span style="color: #949494;"># ℹ 211 more rows</span></span></span></code></pre>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Events plot</span></span>
 <span><span class="fu">reReg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/reReg/man/plotEvents.html" class="external-link">plotEvents</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://wwenjie.org/reda/reference/Recur.html" class="external-link">Recur</a></span><span class="op">(</span><span class="va">t.start</span> <span class="op"><a href="https://wwenjie.org/reda/reference/Recur-to.html" class="external-link">%to%</a></span> <span class="va">t.stop</span>, <span class="va">survey_id</span>, <span class="va">event</span>, <span class="va">status</span><span class="op">)</span> <span class="op">~</span> <span class="fl">1</span>,</span>
@@ -270,7 +255,7 @@ and <a href="https://adibender.github.io/pammtools/articles/recurrent-events.htm
 <pre><code><span><span class="co">## Warning in geom_bar(stat = "identity", fill = ctrl$bar.color, width =</span></span>
 <span><span class="co">## ctrl$width): Ignoring empty aesthetic: `width`.</span></span></code></pre>
 <p><img src="example-analysis_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="" width="480" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># By levels of matrix landscape</span></span>
 <span><span class="fu">reReg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/reReg/man/plotEvents.html" class="external-link">plotEvents</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://wwenjie.org/reda/reference/Recur.html" class="external-link">Recur</a></span><span class="op">(</span><span class="va">t.start</span> <span class="op"><a href="https://wwenjie.org/reda/reference/Recur-to.html" class="external-link">%to%</a></span> <span class="va">t.stop</span>, <span class="va">survey_id</span>, <span class="va">event</span>, <span class="va">status</span><span class="op">)</span> <span class="op">~</span> <span class="va">matrix</span>,</span>
@@ -280,7 +265,7 @@ and <a href="https://adibender.github.io/pammtools/articles/recurrent-events.htm
 <pre><code><span><span class="co">## Warning in geom_bar(stat = "identity", fill = ctrl$bar.color, width =</span></span>
 <span><span class="co">## ctrl$width): Ignoring empty aesthetic: `width`.</span></span></code></pre>
 <p><img src="example-analysis_files/figure-html/unnamed-chunk-4-2.png" class="r-plt" alt="" width="480" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># PED transformation</span></span>
 <span><span class="va">ped</span> <span class="op">=</span> <span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://adibender.github.io/pammtools/reference/as_ped.html" class="external-link">as_ped</a></span><span class="op">(</span></span>
@@ -325,14 +310,14 @@ has its own baseline hazard)</li>
 <code>m_re</code>: As <code>m_tv</code> but with random effect for
 camera trap site</li>
 </ul>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Baseline model</span></span>
 <span><span class="va">m_null</span> <span class="op">=</span> <span class="fu"><a href="https://adibender.github.io/pammtools/reference/pamm.html" class="external-link">pamm</a></span><span class="op">(</span></span>
 <span>  formula <span class="op">=</span> <span class="va">ped_status</span> <span class="op">~</span> <span class="fu">s</span><span class="op">(</span><span class="va">tend</span><span class="op">)</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">ped</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Warning: glm.fit: fitted rates numerically 0 occurred</span></span>
 <span><span class="co">## Warning: glm.fit: fitted rates numerically 0 occurred</span></span></code></pre>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">m_null</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## Family: poisson </span></span>
@@ -355,14 +340,14 @@ camera trap site</li>
 <span><span class="co">## </span></span>
 <span><span class="co">## R-sq.(adj) =  -0.00655   Deviance explained = 2.95%</span></span>
 <span><span class="co">## UBRE = -0.89609  Scale est. = 1         n = 12521</span></span></code></pre>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Proporitional hazards effect of landscape (matrix)</span></span>
 <span><span class="va">m_ph</span> <span class="op">=</span> <span class="fu"><a href="https://adibender.github.io/pammtools/reference/pamm.html" class="external-link">pamm</a></span><span class="op">(</span></span>
 <span>  formula <span class="op">=</span> <span class="va">ped_status</span> <span class="op">~</span> <span class="va">matrix</span> <span class="op">+</span> <span class="fu">s</span><span class="op">(</span><span class="va">tend</span><span class="op">)</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">ped</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Warning: glm.fit: fitted rates numerically 0 occurred</span></span>
 <span><span class="co">## Warning: glm.fit: fitted rates numerically 0 occurred</span></span></code></pre>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">m_ph</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## Family: poisson </span></span>
@@ -386,7 +371,7 @@ camera trap site</li>
 <span><span class="co">## </span></span>
 <span><span class="co">## R-sq.(adj) =  -0.0066   Deviance explained = 2.98%</span></span>
 <span><span class="co">## UBRE = -0.89596  Scale est. = 1         n = 12521</span></span></code></pre>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="co"># Time-varying covariate effect</span></span>
 <span><span class="va">m_tv</span> <span class="op">=</span> <span class="fu"><a href="https://adibender.github.io/pammtools/reference/pamm.html" class="external-link">pamm</a></span><span class="op">(</span></span>
 <span>  formula <span class="op">=</span> <span class="va">ped_status</span> <span class="op">~</span> <span class="va">matrix</span> <span class="op">+</span> <span class="fu">s</span><span class="op">(</span><span class="va">tend</span><span class="op">)</span> <span class="op">+</span></span>
@@ -395,7 +380,7 @@ camera trap site</li>
 <span>  engine <span class="op">=</span> <span class="st">"bam"</span>, method <span class="op">=</span> <span class="st">"fREML"</span>,  discrete <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Warning in bgam.fitd(G, mf, gp, scale, nobs.extra = 0, rho = rho, coef = coef,</span></span>
 <span><span class="co">## : fitted rates numerically 0 occurred</span></span></code></pre>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">m_tv</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## Family: poisson </span></span>
@@ -420,7 +405,7 @@ camera trap site</li>
 <span><span class="co">## </span></span>
 <span><span class="co">## R-sq.(adj) =  -0.00675   Deviance explained = -14.2%</span></span>
 <span><span class="co">## fREML = 780.39  Scale est. = 1         n = 12521</span></span></code></pre>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="va">m_re</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://adibender.github.io/pammtools/reference/pamm.html" class="external-link">pamm</a></span><span class="op">(</span></span>
 <span>  formula <span class="op">=</span> <span class="va">ped_status</span> <span class="op">~</span> <span class="va">matrix</span> <span class="op">+</span> <span class="fu">s</span><span class="op">(</span><span class="va">tend</span><span class="op">)</span> <span class="op">+</span> <span class="fu">s</span><span class="op">(</span><span class="va">tend</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.ordered</a></span><span class="op">(</span><span class="va">matrix</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">s</span><span class="op">(</span><span class="va">Site</span>, bs <span class="op">=</span> <span class="st">"re"</span><span class="op">)</span>,</span>
@@ -428,7 +413,7 @@ camera trap site</li>
 <span> <span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Warning in bgam.fitd(G, mf, gp, scale, nobs.extra = 0, rho = rho, coef = coef,</span></span>
 <span><span class="co">## : fitted rates numerically 0 occurred</span></span></code></pre>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">m_re</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## Family: poisson </span></span>
@@ -476,7 +461,7 @@ functions for the first two steps.</p>
 coyotes lasts for about 5 days. Afterwards the hazard for the occurence
 of coyotes is constant (the wigglines can be ignored since the
 uncertainty is quiet high).</p>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="co"># Null model</span></span>
 <span><span class="va">ndf_null</span> <span class="op">&lt;-</span> <span class="va">ped</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://adibender.github.io/pammtools/reference/newdata.html" class="external-link">make_newdata</a></span><span class="op">(</span>tend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">tend</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -493,7 +478,7 @@ category of landscape (<code>matrix</code>) in one plot (left panel) and
 their hazard ratio(right panel). This indicates (hazard ratio = 1), that
 given a sighting of a deer (primary), occurence of coyotes is not
 affected by the type of landscape in which the deer was sighted.</p>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Stratified hazards</span></span>
 <span><span class="va">ndf_tv</span> <span class="op">&lt;-</span> <span class="va">ped</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://adibender.github.io/pammtools/reference/newdata.html" class="external-link">make_newdata</a></span><span class="op">(</span>tend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">tend</span><span class="op">)</span>, matrix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">matrix</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -513,7 +498,7 @@ affected by the type of landscape in which the deer was sighted.</p>
 <span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">xlab</a></span><span class="op">(</span><span class="st">"Time after white-tailed deer sighting (in days)"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"Hazard ratio for coyote occurence\n (agdev/forest"</span><span class="op">)</span></span>
 <span><span class="va">p_tv</span> <span class="op">+</span> <span class="va">p_hr</span></span></code></pre></div>
-<p><img src="example-analysis_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="" width="576" style="display: block; margin: auto;"></p>
+<p><img src="example-analysis_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div class="footnotes footnotes-end-of-document">
 <hr>
