@@ -71,6 +71,7 @@ The returned dataframe can be directly used for recurrent event analysis.</p>
 <span>  <span class="va">primary</span>,</span>
 <span>  <span class="va">secondary</span>,</span>
 <span>  survey_duration <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  time_unit <span class="op">=</span> <span class="st">"days"</span>,</span>
 <span>  datetime_var <span class="op">=</span> <span class="st">"DateTime"</span>,</span>
 <span>  species_var <span class="op">=</span> <span class="st">"Species"</span>,</span>
 <span>  site_var <span class="op">=</span> <span class="st">"Site"</span>,</span>
@@ -96,7 +97,11 @@ The returned dataframe can be directly used for recurrent event analysis.</p>
 
 
 <dt id="arg-survey-duration">survey_duration<a class="anchor" aria-label="anchor" href="#arg-survey-duration"></a></dt>
-<dd><p>integer(1) Maximum duration of the survey (in days, e.g. "7")</p></dd>
+<dd><p>numeric(1) Maximum duration of the survey in the unit specified by <code>time_unit</code> (e.g. <code>7</code> for 7 days or <code>48</code> for 48 hours).</p></dd>
+
+
+<dt id="arg-time-unit">time_unit<a class="anchor" aria-label="anchor" href="#arg-time-unit"></a></dt>
+<dd><p>character(1) Time unit for <code>survey_duration</code> and the resulting <code>t.start</code>/<code>t.stop</code> columns. One of <code>"days"</code> (default), <code>"hours"</code>, <code>"mins"</code>, <code>"secs"</code>, or <code>"weeks"</code>.</p></dd>
 
 
 <dt id="arg-datetime-var">datetime_var<a class="anchor" aria-label="anchor" href="#arg-datetime-var"></a></dt>
@@ -169,7 +174,7 @@ The returned dataframe can be directly used for recurrent event analysis.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer></div>
